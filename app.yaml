@@ -1,0 +1,19 @@
+runtime: python310
+
+env: standard
+
+entrypoint: python jarvis_auto_collect.py
+
+env_variables:
+  CLAUDE_API_KEY: "sk-ant-"
+  YOUTUBE_API_KEY: "AIzaSy-"
+
+automatic_scaling:
+  min_instances: 0
+  max_instances: 1
+
+service_account: jarvis-auto-collect@PROJECT_ID.iam.gserviceaccount.com
+
+handlers:
+- url: /.*
+  script: auto
