@@ -1,0 +1,185 @@
+{
+  "timestamp": "2026-08-11T17:00:00Z",
+  "projects": {
+    "daiso": {
+      "title": "🛍️ DAISO 드롭쉬핑",
+      "progress": 70,
+      "status": "in_progress",
+      "lastUpdate": "08-11 17:00",
+      "color": "#f97316",
+      "metrics": {
+        "shopify_products": 130,
+        "revenue": "$1,250",
+        "automation_rate": "45%",
+        "team_size": 6
+      }
+    },
+    "jarvis": {
+      "title": "🤖 JARVIS AI",
+      "phase": 1,
+      "accuracy": 95.2,
+      "responseTime": 26.8,
+      "autoRate": 45,
+      "dataCollected": 15000,
+      "lastUpdate": "08-11 16:30",
+      "color": "#8b5cf6",
+      "metrics": {
+        "accuracy_pct": "95.2%",
+        "response_ms": "26.8ms",
+        "data_points": "15,000",
+        "phase": "Phase 1"
+      }
+    },
+    "recruitment": {
+      "title": "👥 채용 진행도",
+      "target": 8,
+      "current": 6,
+      "pipeline": 12,
+      "interviews": 5,
+      "hired": 1,
+      "lastUpdate": "08-11 15:00",
+      "color": "#06b6d4",
+      "metrics": {
+        "target_pct": "75%",
+        "current": "6/8명",
+        "pipeline": "12명",
+        "this_week": "2건"
+      }
+    }
+  },
+  "team": [
+    {
+      "id": 1,
+      "name": "마케팅팀",
+      "role": "Content Lead",
+      "avatar": "M",
+      "task": "TikTok 콘텐츠 촬영",
+      "progress": 85,
+      "status": "active",
+      "lastActive": "08-11 15:30",
+      "nextTask": "인스타그램 포스팅"
+    },
+    {
+      "id": 2,
+      "name": "기술팀",
+      "role": "Automation",
+      "avatar": "T",
+      "task": "n8n 자동화 테스트",
+      "progress": 95,
+      "status": "active",
+      "lastActive": "08-11 15:45",
+      "nextTask": "에러 핸들링"
+    },
+    {
+      "id": 3,
+      "name": "운영팀",
+      "role": "Operations",
+      "avatar": "O",
+      "task": "DSers 배송 추적",
+      "progress": 80,
+      "status": "active",
+      "lastActive": "08-11 15:20",
+      "nextTask": "배송 최적화"
+    },
+    {
+      "id": 4,
+      "name": "고객서비스팀",
+      "role": "Support",
+      "avatar": "S",
+      "task": "Gorgias FAQ 설정",
+      "progress": 75,
+      "status": "active",
+      "lastActive": "08-11 15:10",
+      "nextTask": "템플릿 작성"
+    },
+    {
+      "id": 5,
+      "name": "재무팀",
+      "role": "Finance",
+      "avatar": "F",
+      "task": "대시보드 KPI 검증",
+      "progress": 90,
+      "status": "active",
+      "lastActive": "08-11 15:50",
+      "nextTask": "월간 분석"
+    },
+    {
+      "id": 6,
+      "name": "지원팀",
+      "role": "Support",
+      "avatar": "X",
+      "task": "GitHub 동기화",
+      "progress": 88,
+      "status": "active",
+      "lastActive": "08-11 15:40",
+      "nextTask": "백업 확인"
+    }
+  ],
+  "systems": {
+    "shopify": {
+      "name": "Shopify",
+      "status": "online",
+      "latency": 245,
+      "uptime": 99.99,
+      "detail": "지연시간: 245ms",
+      "lastCheck": "08-11 17:00",
+      "icon": "ti-shopping-cart"
+    },
+    "n8n": {
+      "name": "n8n",
+      "status": "online",
+      "workflows": 5,
+      "success": 100,
+      "detail": "워크플로우: 5개",
+      "lastRun": "08-11 16:45",
+      "icon": "ti-robot"
+    },
+    "dser": {
+      "name": "DSers",
+      "status": "online",
+      "activeOrders": 1,
+      "pending": 0,
+      "detail": "활성 주문: 1건",
+      "lastSync": "08-11 16:50",
+      "icon": "ti-package"
+    },
+    "slack": {
+      "name": "Slack",
+      "status": "online",
+      "messages": 42,
+      "channels": 5,
+      "detail": "메시지: 42개",
+      "lastUpdate": "08-11 17:00",
+      "icon": "ti-message-circle"
+    }
+  },
+  "stats": {
+    "totalProgress": 70,
+    "teamOnline": 6,
+    "systemsHealthy": 4,
+    "activeWorkflows": 5,
+    "dailyDataPoints": 15000
+  },
+  "updates": [
+    {
+      "time": "16:45",
+      "message": "JARVIS 신경망 재훈련 완료 - 95.2% 정확도",
+      "type": "success"
+    },
+    {
+      "time": "15:50",
+      "message": "n8n 자동화 워크플로우 5/5 테스트 통과",
+      "type": "success"
+    },
+    {
+      "time": "15:30",
+      "message": "TikTok 콘텐츠 5개 시나리오 완성",
+      "type": "success"
+    },
+    {
+      "time": "15:20",
+      "message": "DSers 테스트 주문 배송 예정 확인",
+      "type": "success"
+    }
+  ]
+}
