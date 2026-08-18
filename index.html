@@ -226,30 +226,24 @@
             object-position: center; /* 이미지가 항상 정중앙을 기준으로 보이게 설정 */
             animation: imageFade 4s ease-in-out infinite;
             display: block;
+            /* GPU 가속을 강제하여 끊김 현상 방지 */
+            backface-visibility: hidden;
+            transform: translateZ(0);
         }
 
-        /* 이미지 애니메이션: opacity만 변경 (크기는 절대 안 변함) */
+        /* 이미지 애니메이션: fade + 미세한 확대 효과 */
         @keyframes imageFade {
             0% {
-                opacity: 0;
-            }
-            10% {
-                opacity: 1;
-            }
-            40% {
-                opacity: 1;
+                opacity: 0.9;
+                transform: scale(1) translate3d(0, 0, 0);
             }
             50% {
-                opacity: 0.95;
-            }
-            70% {
                 opacity: 1;
-            }
-            90% {
-                opacity: 1;
+                transform: scale(1.02) translate3d(0, 0, 0); /* 미세한 확대 효과 */
             }
             100% {
-                opacity: 0;
+                opacity: 0.9;
+                transform: scale(1) translate3d(0, 0, 0);
             }
         }
 
