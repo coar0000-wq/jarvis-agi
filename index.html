@@ -259,17 +259,6 @@
             50% { transform: rotate(1deg) scale(1.02); }
         }
 
-        /* 📜 작업 로그 자동 스크롤 애니메이션 */
-        @keyframes autoScroll {
-            0% { transform: translateY(0); }
-            100% { transform: translateY(-70px); /* 1개 항목 높이만큼 위로 스크롤 */ }
-        }
-
-        .task-log-item {
-            animation: autoScroll 8s ease-in-out infinite;
-            animation-delay: var(--delay, 0s);
-        }
-
         /* 오른쪽 섹션: 새 패널 (50%) */
         .right-panel {
             flex: 0 0 50%;
@@ -1164,7 +1153,7 @@
                 const emoji = task.status === 'success' ? '✅' : '❌';
                 const count = task.discovered_count > 0 ? `(${task.discovered_count}개)` : '';
 
-                html += `<div class="status-item task-log-item" style="--delay: ${index * 0.2}s;">
+                html += `<div class="status-item">
                     <div style="display: flex; gap: 8px; align-items: flex-start; flex-wrap: wrap;">
                         <span>${emoji}</span>
                         <span style="color: #00d4ff; font-weight: 600; flex: 1; min-width: 100px;">${task.task_name}</span>
