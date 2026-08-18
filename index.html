@@ -478,10 +478,17 @@
         }
 
         .status-item {
-            padding: 8px 0;
+            padding: 10px 8px;
             border-bottom: 1px solid rgba(0, 212, 255, 0.1);
             font-size: 13px;
             color: #aaa;
+            background: rgba(0, 212, 255, 0.02);
+            border-radius: 4px;
+            transition: background 0.2s ease;
+        }
+
+        .status-item:hover {
+            background: rgba(0, 212, 255, 0.05);
         }
 
         .status-item:last-child {
@@ -623,8 +630,9 @@
             }
 
             #task-details-right {
-                max-height: 200px !important;
-                gap: 4px !important;
+                max-height: 280px !important;
+                gap: 6px !important;
+                padding: 0 6px !important;
             }
 
             .status-title {
@@ -633,7 +641,7 @@
             }
 
             .status-item {
-                padding: 5px 0;
+                padding: 8px 6px !important;
                 font-size: 11px;
             }
 
@@ -750,7 +758,7 @@
             <!-- 3️⃣ 작업 상세 로그 -->
             <div class="status-log" style="margin-top: 20px;">
                 <div class="status-title">📋 작업 상세 로그 (최신 6개)</div>
-                <div id="task-details-right" style="display: flex; flex-direction: column; gap: 5px; max-height: 420px; overflow: hidden; margin-top: 10px;">
+                <div id="task-details-right" style="display: flex; flex-direction: column; gap: 8px; max-height: 420px; overflow-y: auto; overflow-x: hidden; margin-top: 10px; padding: 0 8px;">
                     <!-- 데이터 로드됨 -->
                 </div>
             </div>
@@ -1128,14 +1136,14 @@
                 const emoji = task.status === 'success' ? '✅' : '❌';
                 const count = task.discovered_count > 0 ? `(${task.discovered_count}개)` : '';
 
-                html += `<div class="status-item" style="padding: 8px 0;">
-                    <div style="display: flex; gap: 8px; align-items: baseline;">
+                html += `<div class="status-item">
+                    <div style="display: flex; gap: 8px; align-items: flex-start; flex-wrap: wrap;">
                         <span>${emoji}</span>
-                        <span style="color: #00d4ff; font-weight: 600;">${task.task_name}</span>
-                        <span style="color: #00ff00; font-weight: 600;">${count}</span>
+                        <span style="color: #00d4ff; font-weight: 600; flex: 1; min-width: 100px;">${task.task_name}</span>
+                        <span style="color: #00ff00; font-weight: 600; white-space: nowrap;">${count}</span>
                     </div>
-                    <div style="margin-left: 28px; font-size: 12px; color: #888;">${task.details}</div>
-                    <div style="margin-left: 28px; font-size: 11px; color: #666;">${time}</div>
+                    <div style="margin-left: 24px; font-size: 12px; color: #888; margin-top: 4px;">${task.details}</div>
+                    <div style="margin-left: 24px; font-size: 11px; color: #666; margin-top: 2px;">${time}</div>
                 </div>`;
             });
 
