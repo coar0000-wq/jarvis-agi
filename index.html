@@ -1137,9 +1137,20 @@
             const recent = tasks.slice().reverse().slice(0, 6);
 
             // 🔄 가장 최신 작업의 시간을 저장 (마지막 업데이트용)
-            if (recent.length > 0) {
-                const latestDate = new Date(recent[0].timestamp);
-                latestTaskTime = latestDate.toLocaleString('ko-KR', { timeZone: 'Asia/Seoul' });
+            if (recent && recent.length > 0) {
+                // ✅ 타임스탐프를 기준으로 내림차순(최신순) 정렬
+                const sortedRecent = [...recent].sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+                const latestDate = new Date(sortedRecent[0].timestamp);
+
+                latestTaskTime = latestDate.toLocaleString('ko-KR', {
+                    timeZone: 'Asia/Seoul',
+                    year: 'numeric',
+                    month: 'numeric',
+                    day: 'numeric',
+                    hour: 'numeric',
+                    minute: 'numeric',
+                    second: 'numeric'
+                });
             }
 
             recent.forEach(task => {
