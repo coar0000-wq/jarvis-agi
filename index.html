@@ -921,8 +921,8 @@
         function updateProgressDisplay(phase) {
             document.getElementById('phase-progress-title').textContent = `📈 Phase ${phase.phase} 진행도: ${phase.progress_percentage}%`;
 
-            const date = new Date(phase.last_updated);
-            const time = date.toLocaleString('ko-KR', { timeZone: 'Asia/Seoul' });
+            // 🔄 작업 로그의 최신 시간을 사용하고, 없으면 Phase 시간 사용
+            const time = latestTaskTime || new Date(phase.last_updated).toLocaleString('ko-KR', { timeZone: 'Asia/Seoul' });
 
             const statusEmoji = phase.progress_percentage < 50 ? '🟢' : phase.progress_percentage < 100 ? '🟡' : '✅';
             const statusText = phase.progress_percentage < 50 ? '진행 중' : phase.progress_percentage < 100 ? '마무리' : '완료';
@@ -1035,6 +1035,9 @@
             amazon: 0
         };
 
+        // 🔄 작업 로그의 가장 최신 시간 (동적 업데이트용)
+        let latestTaskTime = '';
+
         // cumulative_products.json의 실제 누적값을 최우선 표시
         function updateTotalProducts() {
             const channelTotal = Object.values(totalProductsCount)
@@ -1130,6 +1133,12 @@
 
             let html = '';
             const recent = tasks.slice().reverse().slice(0, 6);
+
+            // 🔄 가장 최신 작업의 시간을 저장 (마지막 업데이트용)
+            if (recent.length > 0) {
+                const latestDate = new Date(recent[0].timestamp);
+                latestTaskTime = latestDate.toLocaleString('ko-KR', { timeZone: 'Asia/Seoul' });
+            }
 
             recent.forEach(task => {
                 const date = new Date(task.timestamp);
