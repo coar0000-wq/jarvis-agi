@@ -204,35 +204,31 @@
             background-color: #666;
         }
 
-        /* 박스창: 전체 화면 높이 + 넘치는 이미지 숨기기 */
+        /* 1️⃣ 이미지를 감싸는 박스(컨테이너) 고정 및 넘침 방지 */
         .left-image-area {
             flex: 1; /* 나머지 공간을 모두 차지 */
             width: 100%;
-            background: rgba(0, 0, 0, 0.2);
-            border-radius: 0;
+            height: 100%; /* 부모 높이에 맞춤 */
+            overflow: hidden; /* 넘치는 이미지 숨기기 */
+            position: relative;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: rgba(255, 255, 255, 0.5);
-            position: relative;
-            overflow: hidden; /* 넘치는 이미지 숨기기 */
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
+            background-color: #0f172a; /* 이미지 로드 전 배경색 */
+            border-radius: 0;
         }
 
-        /* 이미지는 박스 크기에 꽉 채우기 (object-fit: cover 효과) */
+        /* 2️⃣ 이미지가 박스에 꽉 차도록 설정 (object-fit: cover 개념 적용) */
         .dog-image-slideshow {
             position: absolute;
             width: 100%;
             height: 100%;
-            padding: 0;
-            background-size: cover;
+            background-size: cover; /* 비율을 유지하면서 박스 내부를 완벽히 채움 */
             background-position: center;
             background-repeat: no-repeat;
             background-attachment: fixed;
             animation: imageFade 4s ease-in-out infinite;
+            padding: 0;
         }
 
         /* 이미지 애니메이션: opacity만 변경 (크기는 절대 안 변함) */
@@ -643,6 +639,11 @@
             .status-item {
                 padding: 8px 6px !important;
                 font-size: 11px;
+            }
+
+            /* 모바일에서 이미지 영역 최소 높이 */
+            .left-image-area {
+                min-height: 300px !important;
             }
 
             .progress-section-right {
