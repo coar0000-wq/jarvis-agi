@@ -264,6 +264,17 @@
             50% { transform: rotate(1deg) scale(1.02); }
         }
 
+        /* 📜 작업 로그 자동 스크롤 애니메이션 */
+        @keyframes autoScroll {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-70px); /* 1개 항목 높이만큼 위로 스크롤 */ }
+        }
+
+        .task-log-item {
+            animation: autoScroll 8s ease-in-out infinite;
+            animation-delay: var(--delay, 0s);
+        }
+
         /* 오른쪽 섹션: 새 패널 (50%) */
         .right-panel {
             flex: 0 0 50%;
@@ -628,7 +639,7 @@
             }
 
             #task-details-right {
-                max-height: 280px !important;
+                max-height: 250px !important; /* 5개 항목 높이 맞춤 */
                 gap: 6px !important;
                 padding: 0 6px !important;
             }
@@ -760,8 +771,8 @@
 
             <!-- 3️⃣ 작업 상세 로그 -->
             <div class="status-log" style="margin-top: 20px;">
-                <div class="status-title">📋 작업 상세 로그 (최신 6개)</div>
-                <div id="task-details-right" style="display: flex; flex-direction: column; gap: 8px; max-height: 420px; overflow-y: auto; overflow-x: hidden; margin-top: 10px; padding: 0 8px;">
+                <div class="status-title">📋 작업 상세 로그 (최신 5개)</div>
+                <div id="task-details-right" style="display: flex; flex-direction: column; gap: 8px; max-height: 330px; overflow: hidden; margin-top: 10px; padding: 0 8px;">
                     <!-- 데이터 로드됨 -->
                 </div>
             </div>
@@ -1134,13 +1145,14 @@
             }
 
             let html = '';
-            const recent = tasks.slice().reverse().slice(0, 6);
+            // ✅ 기존 로그 데이터에서 최신 5개만 추출
+            const latestFiveLogs = [...tasks]
+                .sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp))
+                .slice(0, 5);
 
             // 🔄 가장 최신 작업의 시간을 저장 (마지막 업데이트용)
-            if (recent && recent.length > 0) {
-                // ✅ 타임스탐프를 기준으로 내림차순(최신순) 정렬
-                const sortedRecent = [...recent].sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
-                const latestDate = new Date(sortedRecent[0].timestamp);
+            if (latestFiveLogs && latestFiveLogs.length > 0) {
+                const latestDate = new Date(latestFiveLogs[0].timestamp);
 
                 latestTaskTime = latestDate.toLocaleString('ko-KR', {
                     timeZone: 'Asia/Seoul',
@@ -1153,13 +1165,13 @@
                 });
             }
 
-            recent.forEach(task => {
+            latestFiveLogs.forEach((task, index) => {
                 const date = new Date(task.timestamp);
                 const time = date.toLocaleString('ko-KR', { timeZone: 'Asia/Seoul' });
                 const emoji = task.status === 'success' ? '✅' : '❌';
                 const count = task.discovered_count > 0 ? `(${task.discovered_count}개)` : '';
 
-                html += `<div class="status-item">
+                html += `<div class="status-item task-log-item" style="--delay: ${index * 0.2}s;">
                     <div style="display: flex; gap: 8px; align-items: flex-start; flex-wrap: wrap;">
                         <span>${emoji}</span>
                         <span style="color: #00d4ff; font-weight: 600; flex: 1; min-width: 100px;">${task.task_name}</span>
