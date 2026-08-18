@@ -203,8 +203,11 @@
             background-color: #666;
         }
 
+        /* 박스창 크기 고정 + 넘치는 이미지 숨기기 */
         .left-image-area {
-            flex: 1;
+            flex: none; /* flex 비활성화 - 크기 고정 */
+            width: 100%;
+            min-height: 400px;
             background: rgba(0, 0, 0, 0.2);
             border-radius: 0;
             display: flex;
@@ -212,56 +215,48 @@
             justify-content: center;
             color: rgba(255, 255, 255, 0.5);
             position: relative;
-            overflow: hidden;
-            min-height: 400px;
+            overflow: hidden; /* 넘치는 이미지 숨기기 */
             background-size: cover;
             background-position: center;
+            background-repeat: no-repeat;
             background-attachment: fixed;
         }
 
+        /* 이미지는 박스 크기에 꽉 채우기 (object-fit: cover 효과) */
         .dog-image-slideshow {
             position: absolute;
             width: 100%;
             height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            object-fit: cover;
             padding: 0;
             background-size: cover;
             background-position: center;
-            animation: slideAndZoom 4s ease-in-out infinite;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            animation: imageFade 4s ease-in-out infinite;
         }
 
-        /* 멀티플 애니메이션: fade + zoom + slide */
-        @keyframes slideAndZoom {
+        /* 이미지 애니메이션: opacity만 변경 (크기는 절대 안 변함) */
+        @keyframes imageFade {
             0% {
                 opacity: 0;
-                transform: scale(0.95) translateY(10px);
             }
             10% {
                 opacity: 1;
-                transform: scale(1) translateY(0);
             }
             40% {
                 opacity: 1;
-                transform: scale(1.05);
             }
             50% {
                 opacity: 0.95;
-                transform: scale(1.05);
             }
             70% {
                 opacity: 1;
-                transform: scale(1.02);
             }
             90% {
                 opacity: 1;
-                transform: scale(1);
             }
             100% {
                 opacity: 0;
-                transform: scale(0.95) translateY(-10px);
             }
         }
 
