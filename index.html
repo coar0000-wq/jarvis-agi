@@ -154,6 +154,7 @@
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 15px;
+            flex: 0 0 auto; /* 필요한 크기만 차지 */
         }
 
         .left-metric-card {
@@ -203,11 +204,10 @@
             background-color: #666;
         }
 
-        /* 박스창 크기 고정 + 넘치는 이미지 숨기기 */
+        /* 박스창: 전체 화면 높이 + 넘치는 이미지 숨기기 */
         .left-image-area {
-            flex: none; /* flex 비활성화 - 크기 고정 */
+            flex: 1; /* 나머지 공간을 모두 차지 */
             width: 100%;
-            min-height: 400px;
             background: rgba(0, 0, 0, 0.2);
             border-radius: 0;
             display: flex;
